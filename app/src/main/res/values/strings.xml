@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">winter2024</string>
+    <string name="hello_message">hello world!</string>
+    <string name="button_message">im a button</string>
+</resources>
