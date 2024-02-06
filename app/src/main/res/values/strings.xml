@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">winter2024</string>
-    <string name="hello_message">hello world!</string>
+    <string name="app_name">Abdulaziz_Android_practice</string>
+    <string name="hello_message">Hello world!</string>
     <string name="button_message">im a button</string>
+    <string name="spin_message" translatable="false">spin flag</string>
+    <string name="button1" translatable="false" />
+    <string name="button2" translatable="false" />
+    <string name="button3" translatable="false" />
+
 </resources>

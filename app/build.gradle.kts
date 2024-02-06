@@ -3,6 +3,9 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        viewBinding = true
+    }
     namespace = "algonquin.cst2355.winter2024"
     compileSdk = 34
 
