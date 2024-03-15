@@ -7,6 +7,9 @@
         <item name="android:statusBarColor">@color/white</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:textColor">@color/my_text</item>
+        <!--        Tells android not to use ActionBar so we can use ToolBar instead-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.Winter2024" parent="Base.Theme.Winter2024" />
