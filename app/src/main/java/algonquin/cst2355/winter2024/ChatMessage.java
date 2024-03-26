@@ -13,7 +13,7 @@ public class ChatMessage {
     @ColumnInfo(name="isSentButton")
     public boolean isSentButton;
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
 
     public ChatMessage(){}
     ChatMessage(String m, String t, boolean sent){
