@@ -3,6 +3,7 @@ package algonquin.cst2355.winter2024;
 import static java.lang.ref.Cleaner.create;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,42 +53,29 @@ public class ChatRoom extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if( item.getItemId() == R.id.item_1 ){
-            TextView messageText = findViewById(R.id.message);
-            ChatMessage m = chatModel.selectedMessage.getValue();
-            int position = messages.indexOf(m);
-            AlertDialog.Builder builder = new AlertDialog.Builder( ChatRoom.this );
-            builder.setMessage("Do you want to delete the message: "  + messageText.getText())
-                    .setTitle("Question: ")
-                    .setPositiveButton("Yes", (d, c) -> {
-                        thread.execute(() -> {
-                            mDAO.deleteMessage(m);
-                        });
-                        messages.remove(position);
-                        myAdapter.notifyItemRemoved(position);
-                        Snackbar.make(messageText, "You deleted message #" + position, Snackbar.LENGTH_LONG)
-                                .setAction("Undo", cl -> {
-                                    thread.execute(() -> {
-                                        mDAO.insertMessage(m);
-                                    });
-                                    messages.add(position, m);
-                                    myAdapter.notifyItemInserted(position);
-                                }).show();
-                    }).setNegativeButton("No", (d, c) -> {
-                    }).create()
+        Log.d("ToolbarAction", "Toolbar item clicked: " + item.getItemId());
+        if (item.getItemId() == R.id.item_1) {
+            // Show an AlertDialog to confirm deletion of all messages
+            new AlertDialog.Builder(ChatRoom.this)
+                    .setMessage("Do you want to delete all messages?")
+                    .setTitle("Confirmation")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        // Clear all messages from the list
+                        messages.clear();
+                        // Notify the adapter that all items have been removed
+                        myAdapter.notifyDataSetChanged();
+                        // Show a Snackbar for feedback
+                        Snackbar.make(binding.recyclerView, "All messages deleted", Snackbar.LENGTH_LONG).show();
+                    })
+                    .setNegativeButton("No", null)
                     .show();
-
-
-            //put your ChatMessage deletion code here. If you select this item, you should show the alert dialog
-                //asking if the user wants to delete this message.
-
-        }else if (item.getItemId() == R.id.item_2) {
+        } else if (item.getItemId() == R.id.item_2) {
+            // Show the About Toast message
             Toast.makeText(this, "Version 1.0, code by @Mo", Toast.LENGTH_LONG).show();
         }
-
         return true;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
