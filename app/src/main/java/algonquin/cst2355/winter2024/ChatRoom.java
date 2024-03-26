@@ -53,41 +53,38 @@ public class ChatRoom extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-//        return super.onOptionsItemSelected(item);
-        if( item.getItemId() == R.id.item_1 ){
-            TextView messageText = findViewById(R.id.message);
-            ChatMessage m = chatModel.selectedMessage.getValue();
-            int position = messages.indexOf(m);
-            AlertDialog.Builder builder = new AlertDialog.Builder( ChatRoom.this );
-            builder.setMessage("Do you want to delete the message: "  + messageText.getText())
-                    .setTitle("Question: ")
-                    .setPositiveButton("Yes", (d, c) -> {
-                        thread.execute(() -> {
-                            mDAO.deleteMessage(m);
+        if (item.getItemId() == R.id.item_1) {
+            // Confirmation dialog to ensure the user wants to delete all messages
+            AlertDialog.Builder builder = new AlertDialog.Builder(ChatRoom.this);
+            builder.setMessage(getString(R.string.delete_all_messages_confirmation))
+                    .setTitle(getString(R.string.question_title))
+                    .setPositiveButton(getString(R.string.positive_button_yes), (dialog, which) -> {
+                       /*
+                        runOnUiThread(() -> {
+                            // Clear the list and notify the adapter
+                            //messages.clear();
+                            myAdapter.notifyDataSetChanged();
+                            // Optional: Show a confirmation Snackbar
+                            Snackbar.make(binding.getRoot(), getString(R.string.delete_all_messages_confirmation), Snackbar.LENGTH_SHORT).show();
                         });
-                        messages.remove(position);
-                        myAdapter.notifyItemRemoved(position);
-                        Snackbar.make(messageText, "You deleted message #" + position, Snackbar.LENGTH_LONG)
-                                .setAction("Undo", cl -> {
-                                    thread.execute(() -> {
-                                        mDAO.insertMessage(m);
-                                    });
-                                    messages.add(position, m);
-                                    myAdapter.notifyItemInserted(position);
-                                }).show();
-                    }).setNegativeButton("No", (d, c) -> {
-                    }).create()
+
+                        */
+                        thread.execute(() -> {
+                             //Delete all messages from the database
+                            mDAO.deleteAllMessages();
+
+
+                        });
+                        messages.clear();
+                        myAdapter.notifyDataSetChanged();
+                    })
+                    .setNegativeButton(getString(R.string.negative_button_no), null)
+                    .create()
                     .show();
-
-            //Toggle framelayout visibility.
-
-
         } else if (item.getItemId() == R.id.item_2) {
             Toast.makeText(this, "Version 1.0, code by @Mo", Toast.LENGTH_LONG).show();
         }
-//        return super.onOptionsItemSelected(item);
         return true;
-
     }
 
     @Override
@@ -239,12 +236,8 @@ public class ChatRoom extends AppCompatActivity {
             super(itemView);
             messageText = itemView.findViewById(R.id.message);
             timeText = itemView.findViewById(R.id.time);
-            itemView.setOnClickListener( click ->{
-                int position = getAbsoluteAdapterPosition();
-                ChatMessage selected = messages.get(position);
 
-                chatModel.selectedMessage.postValue(selected);
-            });
+            ;
         }
     }
 }

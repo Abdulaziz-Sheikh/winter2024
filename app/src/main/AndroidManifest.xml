@@ -15,7 +15,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/app_icon"
-        android:label="@string/app_name"
+        android:label="@string/app_namee"
         android:supportsRtl="true"
         android:theme="@style/Theme.Winter2024"
         tools:targetApi="31">

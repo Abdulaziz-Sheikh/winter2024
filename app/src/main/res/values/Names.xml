@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+<!--    <string name="app_namee">YourAppName</string> &lt;!&ndash; Replace YourAppName with your actual app name &ndash;&gt;-->
+    <string name="question_title" translatable="false">Question:</string>
+    <string name="delete_message_confirmation" translatable="false">Do you want to delete the message:</string>
+    <string name="positive_button_yes" translatable="false">Yes</string>
+    <string name="negative_button_no" translatable="false">No</string>
+    <string name="undo_action" translatable="false">Undo</string>
+    <string name="delete_all_messages_confirmation" translatable="false">Delete all Messages?</string>
+    <string name="message_deleted_snackbar" translatable="false">You deleted message #</string>
+    <string name="version_info" translatable="false">Version 1.0, code by @Mo</string>
+    <string name="date_format_ee" translatable="false">EE, dd-MMM-yyyy hh:mm:ss a</string>
+    <string name="date_format_eeee" translatable="false">EEEE, dd-MMM-yyyy hh-mm-ss a</string>
+    <string name="text_hint" translatable="false">Enter your message</string>
+</resources>

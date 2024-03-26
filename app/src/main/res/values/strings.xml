@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Abdulaziz_Android_practice</string>
+    <string name="app_namee">Abdulaziz_Android_practice</string>
     <string name="hello_message">Hello world!</string>
     <string name="button_message">im a button</string>
     <string name="spin_message" translatable="false">spin flag</string>

@@ -19,6 +19,9 @@ public interface ChatMessageDAO {
     public List<ChatMessage> getAllMessage();
     @Delete
     void deleteMessage(ChatMessage m);
+    @Query("DELETE FROM ChatMessage") // Assuming your table is named 'chat_messages'
+    void deleteAllMessages();
+
 
 
 }
